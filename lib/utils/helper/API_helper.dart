@@ -21,4 +21,29 @@ class APIHelper {
     }
     return null;
   }
+
+
+  Future<List<String>> fetchSuggestions(String query) async {
+    final response = await http.get(Uri.parse('https://your-api-endpoint?query=$query'));
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return data['suggestions'] as List<String>;
+    } else {
+      throw Exception('Failed to fetch suggestions');
+    }
+  }
+
+  // Autocomplete<String>(
+  // optionsBuilder: (TextEditingValue textEditingValue) async {
+  // if (textEditingValue.text.isEmpty) {
+  // return []; // Show loading indicator if desired
+  // }
+  // final suggestions = await fetchSuggestions(textEditingValue.text);
+  // return suggestions;
+  // },
+  // // ...
+  // )
+
 }
+
+
