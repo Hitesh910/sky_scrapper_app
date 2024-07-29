@@ -16,7 +16,7 @@ class WeatherModel {
 
 class MainModel
 {
-  double? temp,feels_like,temp_min,temp_max;
+  num? temp,feels_like,temp_min,temp_max;
   int? pressure,humidity;
 
   MainModel(

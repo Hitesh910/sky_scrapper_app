@@ -8,6 +8,9 @@ void main() {
     MultiProvider(providers: [
       ChangeNotifierProvider.value(value: HomeProvider())
     ],child: MaterialApp(
+      themeMode: ThemeMode.dark,
+      theme: ThemeData.light(),
+      // app_themes,
       debugShowCheckedModeBanner: false,
       routes: app_routes,
     ),)
