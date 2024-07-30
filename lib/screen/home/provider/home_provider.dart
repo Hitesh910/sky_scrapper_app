@@ -1,35 +1,51 @@
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:sky_scrapper_app/utils/helper/API_helper.dart';
 
+import '../../../utils/helper/shared_helper.dart';
 import '../model/weather_model.dart';
-class HomeProvider with ChangeNotifier
-{
+
+class HomeProvider with ChangeNotifier {
   // List<WeatherModel> weatherList = [];
-   Future<WeatherModel?>? model;
+  Future<WeatherModel?>? model;
+  Future<WeatherModel?>? searchModel;
   List<WeatherModel> weatherList = [];
   String search = "Surat";
   int temp = 0;
+  String? theme;
+  SharedHelper share = SharedHelper();
 
-  getWeather()
-   async {
+  getWeather() async {
     APIHelper helper = APIHelper();
-    // weatherList = helper.getAPI();
     model = helper.getAPI(search);
-//notifyListeners();
-    // print(model);
-    //
-    // temp = {model!.main!.temp!.ceil() - 273.15} as int;
-     model?.then((value) {
-       if(model!=null)
-       {
-         // tempureChange();
-         notifyListeners();
-       }
-     },);
+    model?.then(
+      (value) {
+        if (model != null) {
+          // tempureChange();
+          notifyListeners();
+        }
+      },
+    );
+  }
 
+  searchWeather() async {
+    APIHelper helper = APIHelper();
+    searchModel = helper.getAPI(search);
+
+    print("DATA ========================================== $searchModel ");
+    searchModel?.then(
+      (value) {
+        if (value != null) {
+          print("DATA1 ========================================== $searchModel ");
+          notifyListeners();
+        } else {
+          print("DATA2 ========================================== $searchModel ");
+          searchModel = null;
+          notifyListeners();
+        }
+      },
+    );
   }
 
   // void tempureChange()
@@ -39,5 +55,23 @@ class HomeProvider with ChangeNotifier
   //   print(temp);
   // }
 
+  // void changeTheme(String value)
+  // {
+  //   theme = value;
+  //   notifyListeners();
+  //   // print(theme);
+  // }
 
+  void setTheme(String value) {
+    theme = value;
+    share.setTheme(theme!);
+    notifyListeners();
+    print(theme);
+  }
+
+  Future<void> getTheme() async {
+    theme = await share.getTheme();
+    notifyListeners();
+    // print(theme);
+  }
 }
