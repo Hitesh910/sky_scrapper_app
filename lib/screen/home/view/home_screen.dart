@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   HomeProvider? providerW;
   TextEditingController txtSearch = TextEditingController();
   int? temp;
-  GlobalKey<ScaffoldState> ScaffoldKey = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   String dropdown = "Hello";
 
   @override
@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     providerR = context.read<HomeProvider>();
     providerW = context.watch<HomeProvider>();
     return Scaffold(
+      key: scaffoldKey,
         appBar: AppBar(
           centerTitle: true,
           title: const Text("Sky scrapper App"),
@@ -440,6 +441,40 @@ class _HomeScreenState extends State<HomeScreen> {
           // Text("hello"),)
           ,
         ));
+  }
+
+  void bookmarkWeather()
+  {
+    scaffoldKey.currentState!.showBottomSheet((context) => BottomSheet(onClosing: () {
+
+    }, builder: (context) {
+    return
+    Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 100,
+                    width: MediaQuery.sizeOf(context).width,
+                    margin: const EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                            image: AssetImage("assets/images/img11.jpg"),
+                            fit: BoxFit.cover,
+                            opacity: 2)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("New"),
+
+                      ],
+                    ),
+                  )
+                ],
+              );
+            }
+      ),
+    );
   }
 }
 
