@@ -1,16 +1,25 @@
-# sky_scrapper_app
+<h1> Weather App (Sky Scrapper)</h1>
 
-A new Flutter project.
+# Project Description:
+- "Sky Scrapper" is a feature-rich weather application built using Flutter, incorporating key
+concepts such as API calling, Shared Preferences, and network connectivity. The app offers a
+comprehensive set of functionalities designed to provide users with accurate and timely weather
+information for cities, states, and countries.
 
-## Getting Started
+# Project Objectives:
+- A functional Weather application developed using Flutter.
+- Source code and documentation for the application.
+- User manual and installation instructions.
+- Project report detailing the development process, challenges faced, and solutions implemented.
+- Presentation and demonstration of the application to a panel of reviewers.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<p>
+    <img src = "https://github.com/user-attachments/assets/9b8106ec-1093-456f-96ab-8cb2822be421"height="800"width="400"/>
+  <img src ="https://github.com/user-attachments/assets/3a1cdec5-ce6a-4271-b792-d1fe306612fc"height="800"width="400"/>
+  <img src = "https://github.com/user-attachments/assets/4c4501e7-01f0-47f9-bf7f-f29460940e8e"height="800"width="400"/>
+  <img src = "https://github.com/user-attachments/assets/c44a56f1-e349-4aae-a51f-5af5aa31836b"height="800"width="400"/>
+  <img src = "https://github.com/user-attachments/assets/136d34fb-a8e9-4a8e-add6-334ef3f06593"height="800"width="400"/>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+</p>
