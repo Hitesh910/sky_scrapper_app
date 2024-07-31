@@ -59,17 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ];
               },
             ),
-            // IconButton(
-            //     onPressed: () {
-            //       PopupMenuButton(itemBuilder: (context) {
-            //       return  [PopupMenuItem(child: Text("Hello"))];
-            //       },);
-            //       // DropdownButton(
-            //       //   value: dropdown,
-            //       //   items: const [DropdownMenuItem(child: Text("hello"))],
-            //       //   onChanged: (value) {},
-            //       // );
-            //     },
+
             //     icon: const Icon(Icons.color_lens))
           ],
         ),
@@ -387,7 +377,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // ),
                 InkWell(
                   onTap: () {
-
+bookmarkWeather();
                   },
                   child: const Row(
                     children: [
@@ -445,33 +435,36 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void bookmarkWeather()
   {
-    scaffoldKey.currentState!.showBottomSheet((context) => BottomSheet(onClosing: () {
+    showModalBottomSheet(context:  context, builder: (context) => BottomSheet(onClosing: () {
 
     }, builder: (context) {
     return
-    Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 100,
-                    width: MediaQuery.sizeOf(context).width,
-                    margin: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: const DecorationImage(
-                            image: AssetImage("assets/images/img11.jpg"),
-                            fit: BoxFit.cover,
-                            opacity: 2)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("New"),
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 100,
+                      width: MediaQuery.sizeOf(context).width,
+                      margin: const EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: const DecorationImage(
+                              image: AssetImage("assets/images/img11.jpg"),
+                              fit: BoxFit.cover,
+                              opacity: 2)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("New"),
 
-                      ],
-                    ),
-                  )
-                ],
-              );
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+    );
             }
       ),
     );
