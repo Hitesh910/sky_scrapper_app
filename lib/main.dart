@@ -6,6 +6,7 @@ import 'package:sky_scrapper_app/utils/app_routes.dart';
 import 'package:sky_scrapper_app/utils/app_themes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider.value(value: InternetProvider()..checkInternet()),
@@ -13,9 +14,9 @@ void main() {
     ],
     child: Consumer<HomeProvider>(builder: (context, value, child) {
       value.getTheme();
-    return  MaterialApp(
+      return MaterialApp(
         themeMode: ThemeMode.dark,
-        theme:value.theme == "light" ?lightTheme:darkTheme,
+        theme: value.theme == "light" ? lightTheme : darkTheme,
         debugShowCheckedModeBanner: false,
         routes: app_routes,
       );

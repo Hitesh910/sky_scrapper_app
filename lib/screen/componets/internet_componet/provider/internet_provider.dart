@@ -2,7 +2,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
 class InternetProvider with ChangeNotifier {
-  bool isInternet = true;
+  bool isInternet = false;
 
   void checkInternet() {
     Connectivity checkConnectivity = Connectivity();
@@ -14,6 +14,7 @@ class InternetProvider with ChangeNotifier {
         } else {
           isInternet = true;
         }
+        print(isInternet);
         notifyListeners();
       },
     );

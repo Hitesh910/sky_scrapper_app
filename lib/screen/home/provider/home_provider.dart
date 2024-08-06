@@ -15,6 +15,15 @@ class HomeProvider with ChangeNotifier {
   int temp = 0;
   String? theme;
   SharedHelper share = SharedHelper();
+  bool isSave = true;
+  List<String> saveWeather = [];
+
+  Map weatherImage = {
+    "Rain":"assets/images/img9.png",
+    "Clouds":"assets/images/img8.png",
+    "Clear":"assets/images/img.png",
+    "Haze":"assets/images/img12.png"
+  };
 
   getWeather() async {
     APIHelper helper = APIHelper();
@@ -73,5 +82,25 @@ class HomeProvider with ChangeNotifier {
     theme = await share.getTheme();
     notifyListeners();
     // print(theme);
+  }
+
+  void saveData(String name)
+  {
+    isSave =! isSave;
+    saveWeather.add(name);
+    share.setData(saveWeather);
+    notifyListeners();
+  }
+
+  void getData() async
+  {
+    var data =await share.getData();
+
+    if(data!=null)
+      {
+        saveWeather = data;
+      }
+
+    notifyListeners();
   }
 }

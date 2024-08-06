@@ -26,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     context.read<HomeProvider>().getWeather();
+    context.read<HomeProvider>().getData();
   }
 
   @override
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     providerR = context.read<HomeProvider>();
     providerW = context.watch<HomeProvider>();
     return Scaffold(
-      key: scaffoldKey,
+        key: scaffoldKey,
         appBar: AppBar(
           centerTitle: true,
           title: const Text("Sky scrapper App"),
@@ -55,16 +56,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       // providerW!.changeTheme("dark");
                       providerR!.setTheme("dark");
                     },
-                  )
+                  ),
                 ];
               },
             ),
 
-            //     icon: const Icon(Icons.color_lens))
-          ],
+]            //     icon: const Icon(Icons.color_lens))
+
         ),
         body: // Future builder
-            context.watch<InternetProvider>().isInternet
+            context.watch<InternetProvider>().isInternet == true
                 ? SingleChildScrollView(
                     child: FutureBuilder(
                       future: providerW!.model,
@@ -152,15 +153,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                     const SizedBox(
                                       height: 20,
                                     ),
+
+
                                     // Expanded(
                                     // child: List.generate(2,(index) {
                                     // Text("${model.clouds[index].main}")
                                     // },
                                     // ),
 
-                                    const Image(
-                                      image:
-                                          AssetImage("assets/images/img.png"),
+                                    Image(
+                                      image: AssetImage(
+                                          "${providerW!.weatherImage[model.clouds![0]!.main]}"),
                                       height: 120,
                                       width: 150,
                                     ),
@@ -367,7 +370,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   )
                 : const InternetComponets(),
-        drawer:  Drawer(
+        drawer: Drawer(
           child: Padding(
             padding: EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 10),
             child: Column(
@@ -377,7 +380,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // ),
                 InkWell(
                   onTap: () {
-bookmarkWeather();
+                    bookmarkWeather();
                   },
                   child: const Row(
                     children: [
@@ -433,41 +436,22 @@ bookmarkWeather();
         ));
   }
 
-  void bookmarkWeather()
-  {
-    showModalBottomSheet(context:  context, builder: (context) => BottomSheet(onClosing: () {
-
-    }, builder: (context) {
-    return
-    Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 100,
-                      width: MediaQuery.sizeOf(context).width,
-                      margin: const EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: const DecorationImage(
-                              image: AssetImage("assets/images/img11.jpg"),
-                              fit: BoxFit.cover,
-                              opacity: 2)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("New"),
-
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-    );
-            }
-      ),
+  void bookmarkWeather() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => BottomSheet(
+          onClosing: () {},
+          builder: (context) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView.builder(
+                itemCount: providerW!.saveWeather.length,
+                itemBuilder: (context, index) {
+                  return Text("${providerW!.saveWeather[index]}");
+                },
+              ),
+            );
+          }),
     );
   }
 }
-
